@@ -15,13 +15,56 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const tsoa_1 = require("tsoa");
 const poService_1 = require("./poService");
 let PurchaseController = class PurchaseController extends tsoa_1.Controller {
-    async getUser(uuid) {
-        return new poService_1.POService().get(uuid);
+    async getPurchase(uuid) {
+        const po = await new poService_1.POService().getOne(uuid);
+        if (po)
+            return po;
+        this.setStatus(404);
+        return;
     }
     async createUser(requestBody) {
+        console.log(requestBody);
+        const po = await (new poService_1.POService()).create(requestBody);
         this.setStatus(201); // set return status 201
-        const po = (new poService_1.POService()).create(requestBody);
+        this.setHeader("Location", "/purchase/" + po.id);
         return po;
+    }
+    async delete(uuid) {
+        try {
+            const success = await new poService_1.POService().delete(uuid);
+            if (success) {
+                this.setStatus(200);
+                return;
+            }
+            else { // already deleted
+                this.setStatus(410);
+                return;
+            }
+        }
+        catch (error) { // not found
+            this.setStatus(404);
+            return;
+        }
+    }
+    async updatePO(uuid, requestBody) {
+        console.log("PUT");
+        console.log(uuid);
+        console.log(requestBody);
+        // try {
+        const po = await new poService_1.POService().update(uuid, requestBody);
+        if (po) {
+            this.setStatus(200);
+            return po; // success
+        }
+        // failed to find uuid
+        this.setStatus(404);
+        return;
+        // }
+        // catch (error) {
+        //   // wrong format
+        //   this.setStatus(400);
+        //   return;
+        // }
     }
 };
 __decorate([
@@ -30,7 +73,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], PurchaseController.prototype, "getUser", null);
+], PurchaseController.prototype, "getPurchase", null);
 __decorate([
     tsoa_1.SuccessResponse("201", "Created") // Custom success response
     ,
@@ -40,6 +83,21 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], PurchaseController.prototype, "createUser", null);
+__decorate([
+    tsoa_1.Delete("{uuid}"),
+    __param(0, tsoa_1.Path()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], PurchaseController.prototype, "delete", null);
+__decorate([
+    tsoa_1.Put("{uuid}"),
+    __param(0, tsoa_1.Path()),
+    __param(1, tsoa_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], PurchaseController.prototype, "updatePO", null);
 PurchaseController = __decorate([
     tsoa_1.Route("/purchase")
 ], PurchaseController);

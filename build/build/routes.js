@@ -15,7 +15,7 @@ const models = {
             "poNumber": { "dataType": "string", "required": true },
             "lineItem": { "dataType": "string", "required": true },
             "quantity": { "dataType": "double", "required": true },
-            "date": { "dataType": "datetime", "default": "2021-03-21T09:37:21.827Z" },
+            "date": { "dataType": "datetime", "default": "2021-03-21T17:46:03.268Z" },
             "customerNumber": { "dataType": "string", "required": true },
             "paymentReference": { "dataType": "string", "required": true },
             "isDeleted": { "dataType": "boolean", "default": false },
@@ -40,7 +40,7 @@ function RegisterRoutes(app) {
     //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
     //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
     // ###########################################################################################################
-    app.get('/purchase/:uuid', function PurchaseController_getUser(request, response, next) {
+    app.get('/purchase/:uuid', function PurchaseController_getPurchase(request, response, next) {
         const args = {
             uuid: { "in": "path", "name": "uuid", "required": true, "dataType": "string" },
         };
@@ -53,7 +53,7 @@ function RegisterRoutes(app) {
             return next(err);
         }
         const controller = new purchaseController_1.PurchaseController();
-        const promise = controller.getUser.apply(controller, validatedArgs);
+        const promise = controller.getPurchase.apply(controller, validatedArgs);
         promiseHandler(controller, promise, response, undefined, next);
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -71,6 +71,41 @@ function RegisterRoutes(app) {
         }
         const controller = new purchaseController_1.PurchaseController();
         const promise = controller.createUser.apply(controller, validatedArgs);
+        promiseHandler(controller, promise, response, undefined, next);
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.delete('/purchase/:uuid', function PurchaseController_delete(request, response, next) {
+        const args = {
+            uuid: { "in": "path", "name": "uuid", "required": true, "dataType": "string" },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+        }
+        catch (err) {
+            return next(err);
+        }
+        const controller = new purchaseController_1.PurchaseController();
+        const promise = controller.delete.apply(controller, validatedArgs);
+        promiseHandler(controller, promise, response, undefined, next);
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.put('/purchase/:uuid', function PurchaseController_updatePO(request, response, next) {
+        const args = {
+            uuid: { "in": "path", "name": "uuid", "required": true, "dataType": "string" },
+            requestBody: { "in": "body", "name": "requestBody", "required": true, "dataType": "any" },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+        }
+        catch (err) {
+            return next(err);
+        }
+        const controller = new purchaseController_1.PurchaseController();
+        const promise = controller.updatePO.apply(controller, validatedArgs);
         promiseHandler(controller, promise, response, undefined, next);
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

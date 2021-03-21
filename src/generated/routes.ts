@@ -3,7 +3,7 @@
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, HttpStatusCodeLiteral, TsoaResponse } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { PurchaseController } from './../src/purchaseController';
+import { PurchaseController } from './../purchaseController';
 import * as express from 'express';
 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -16,7 +16,7 @@ const models: TsoaRoute.Models = {
             "poNumber": {"dataType":"string","required":true},
             "lineItem": {"dataType":"string","required":true},
             "quantity": {"dataType":"double","required":true},
-            "date": {"dataType":"datetime","default":"2021-03-21T17:50:43.023Z"},
+            "date": {"dataType":"datetime","default":"2021-03-21T18:41:45.669Z"},
             "customerNumber": {"dataType":"string","required":true},
             "paymentReference": {"dataType":"string","required":true},
             "isDeleted": {"dataType":"boolean","default":false},
@@ -44,6 +44,49 @@ export function RegisterRoutes(app: express.Router) {
     //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
     //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
     // ###########################################################################################################
+        app.get('/purchase/:uuid',
+            function PurchaseController_getPurchase(request: any, response: any, next: any) {
+            const args = {
+                    uuid: {"in":"path","name":"uuid","required":true,"dataType":"string"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new PurchaseController();
+
+
+            const promise = controller.getPurchase.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/purchase',
+            function PurchaseController_getAllPurchases(request: any, response: any, next: any) {
+            const args = {
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new PurchaseController();
+
+
+            const promise = controller.getAllPurchases.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.post('/purchase',
             function PurchaseController_createUser(request: any, response: any, next: any) {
             const args = {
@@ -92,7 +135,7 @@ export function RegisterRoutes(app: express.Router) {
             function PurchaseController_updatePO(request: any, response: any, next: any) {
             const args = {
                     uuid: {"in":"path","name":"uuid","required":true,"dataType":"string"},
-                    requestBody: {"in":"body","name":"requestBody","required":true,"dataType":"any"},
+                    requestBody: {"in":"body","name":"requestBody","required":true,"ref":"POCreationParams"},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

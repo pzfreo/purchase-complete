@@ -20,9 +20,9 @@ async function getRepository() {
         synchronize: true,
         logging: false
     });
-    const repository = conn.getRepository(purchaseOrder_1.PurchaseOrder);
-    createSamplePO(repository);
-    return repository;
+    repositoryInstance = conn.getRepository(purchaseOrder_1.PurchaseOrder);
+    createSamplePO(repositoryInstance);
+    return repositoryInstance;
 }
 exports.getRepository = getRepository;
 function createSamplePO(repo) {
