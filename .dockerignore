@@ -1,4 +1,4 @@
 # comment
 node_modules*
-dist*
+build*
 .git*
