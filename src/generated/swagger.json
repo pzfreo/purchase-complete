@@ -24,7 +24,7 @@
 					"date": {
 						"type": "string",
 						"format": "date-time",
-						"default": "2021-03-21T18:41:45.669Z"
+						"default": "2021-03-21T19:01:31.324Z"
 					},
 					"customerNumber": {
 						"type": "string"
@@ -87,7 +87,7 @@
 		"title": "purchase-tsoa",
 		"version": "1.0.0",
 		"license": {
-			"name": "MIT"
+			"name": "Apache-2.0"
 		},
 		"contact": {
 			"name": "Paul Fremantle ",
@@ -126,8 +126,8 @@
 			"delete": {
 				"operationId": "Delete",
 				"responses": {
-					"204": {
-						"description": "No content"
+					"200": {
+						"description": "OK"
 					}
 				},
 				"security": [],
@@ -214,7 +214,7 @@
 				"parameters": []
 			},
 			"post": {
-				"operationId": "CreateUser",
+				"operationId": "CreatePurchase",
 				"responses": {
 					"201": {
 						"description": "Created",

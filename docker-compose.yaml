@@ -1,0 +1,30 @@
+version: '3'
+services:
+  purchase:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nodejs
+    environment: 
+      "DEBUG": "*.*"
+    depends_on: 
+      - db
+    ports: 
+      - "8000:8000"
+    restart: unless-stopped
+    command: ["./wait-for-it.sh", "db:5432", "--","npm", "run","start"]
+    environment: 
+      DEBUG: "*:*"
+      DBHOST: "db"
+      DBUSER: "postgres"
+      DBDATABASE: "postgres"
+      DBPASSWORD: "mypass"
+      DBPORT: 5432
+      PORT: 8000
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "mypass"
+      POSTGRES_DATABASE: "postgres"

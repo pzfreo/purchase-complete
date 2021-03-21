@@ -39,7 +39,7 @@ import {
   
     @SuccessResponse("201", "Created") // Custom success response
     @Post()
-    public async createUser(
+    public async createPurchase(
       @Body() requestBody: POCreationParams
     ): Promise<PurchaseOrder> {
       console.log(requestBody);
@@ -49,6 +49,7 @@ import {
       return po;
     }
 
+    @SuccessResponse("200", "OK")
     @Delete("{uuid}")
     public async delete(@Path() uuid: string) {  
       try {

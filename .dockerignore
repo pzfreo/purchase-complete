@@ -1,0 +1,4 @@
+# comment
+node_modules*
+dist*
+.git*

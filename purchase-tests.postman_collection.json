@@ -191,7 +191,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"paymentReference\": \"PR001\",\n    \"poNumber\": \"PO1111\",\n    \"quantity\": 0,\n    \"customerNumber\": \"CR005\",\n    \"lineItem\": \"LI010\"\n    \n}",
+					"raw": "{\n    \"paymentReference\": \"PR001\",\n    \"poNumber\": \"PO1111\",\n    \"quantity\": 0,\n    \"customerNumber\": \"CR005\",\n    \"lineItem\": \"LI010\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -199,16 +199,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/purchase/3342e1b3-9803-447d-a2dc-fe9be9470a85",
+					"raw": "http://localhost:8000{{location}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8000",
-					"path": [
-						"purchase",
-						"3342e1b3-9803-447d-a2dc-fe9be9470a85"
-					]
+					"port": "8000{{location}}"
 				}
 			},
 			"response": []

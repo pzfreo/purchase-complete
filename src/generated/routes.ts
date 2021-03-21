@@ -16,7 +16,7 @@ const models: TsoaRoute.Models = {
             "poNumber": {"dataType":"string","required":true},
             "lineItem": {"dataType":"string","required":true},
             "quantity": {"dataType":"double","required":true},
-            "date": {"dataType":"datetime","default":"2021-03-21T18:41:45.669Z"},
+            "date": {"dataType":"datetime","default":"2021-03-21T19:01:31.324Z"},
             "customerNumber": {"dataType":"string","required":true},
             "paymentReference": {"dataType":"string","required":true},
             "isDeleted": {"dataType":"boolean","default":false},
@@ -88,7 +88,7 @@ export function RegisterRoutes(app: express.Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.post('/purchase',
-            function PurchaseController_createUser(request: any, response: any, next: any) {
+            function PurchaseController_createPurchase(request: any, response: any, next: any) {
             const args = {
                     requestBody: {"in":"body","name":"requestBody","required":true,"ref":"POCreationParams"},
             };
@@ -105,7 +105,7 @@ export function RegisterRoutes(app: express.Router) {
             const controller = new PurchaseController();
 
 
-            const promise = controller.createUser.apply(controller, validatedArgs as any);
+            const promise = controller.createPurchase.apply(controller, validatedArgs as any);
             promiseHandler(controller, promise, response, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
