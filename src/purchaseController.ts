@@ -13,7 +13,9 @@ import {
   import { PurchaseOrder } from "./purchaseOrder";
   import { POService, POCreationParams } from "./poService";
   
-
+  interface ErrorReport {
+    error: String;
+  };
 
   @Route("/purchase")
   export class PurchaseController extends Controller {
@@ -21,19 +23,19 @@ import {
 
     @Get("{uuid}")
     public async getPurchase(@Path() uuid: string
-    ): Promise<PurchaseOrder> {  
-      console.log("get")
+    ): Promise<PurchaseOrder | ErrorReport> {  
+      
       const po : PurchaseOrder = await new POService().getOne(uuid);
       if (po) return po;
       this.setStatus(404);
-      return;
+      return { error: "Not Found"};
     }
 
     @Get()
     public async getAllPurchases() {
       const pos : PurchaseOrder[] = await new POService().getAll();
       return pos.filter(function (po:PurchaseOrder) {return !po.isDeleted}).map( function (po:PurchaseOrder)  { return {"href": po.id}});
-      // return  pos;
+    
     }
     
   
@@ -42,7 +44,7 @@ import {
     public async createPurchase(
       @Body() requestBody: POCreationParams
     ): Promise<PurchaseOrder> {
-      console.log(requestBody);
+      
       const po = await (new POService()).create(requestBody);
       this.setStatus(201); // set return status 201
       this.setHeader("Location", "/purchase/" + po.id)
@@ -75,25 +77,22 @@ import {
     public async updatePO(
         @Path() uuid: string,
         @Body() requestBody: POCreationParams
-    ): Promise<PurchaseOrder> | null {  
-      console.log("PUT");
-      console.log(uuid);
-      console.log(requestBody);
-      // try {
+    ): Promise<PurchaseOrder|ErrorReport> {  
+      
+      try {
         const po : PurchaseOrder = await new POService().update(uuid, requestBody);
         if (po) {
           this.setStatus(200);
           return po; // success
         } 
-        // failed to find uuid
-        this.setStatus(404);
-         return;
-      // }
-      // catch (error) {
-      //   // wrong format
-      //   this.setStatus(400);
-      //   return;
-      // }
+        else { // failed to find uuid
+          this.setStatus(404);
+          return { error: "not found"};
+        }
+      } catch (error) {   // wrong format
+        this.setStatus(400);
+        return { error: "invalid JSON"};
+      }
     }
 
   }

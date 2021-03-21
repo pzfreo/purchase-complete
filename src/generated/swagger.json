@@ -24,7 +24,7 @@
 					"date": {
 						"type": "string",
 						"format": "date-time",
-						"default": "2021-03-21T19:01:31.324Z"
+						"default": "2021-03-21T20:33:30.664Z"
 					},
 					"customerNumber": {
 						"type": "string"
@@ -44,6 +44,18 @@
 					"quantity",
 					"customerNumber",
 					"paymentReference"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ErrorReport": {
+				"properties": {
+					"error": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"error"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -105,7 +117,14 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/PurchaseOrder"
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/PurchaseOrder"
+										},
+										{
+											"$ref": "#/components/schemas/ErrorReport"
+										}
+									]
 								}
 							}
 						}
@@ -150,12 +169,14 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"allOf": [
+									"anyOf": [
 										{
 											"$ref": "#/components/schemas/PurchaseOrder"
+										},
+										{
+											"$ref": "#/components/schemas/ErrorReport"
 										}
-									],
-									"nullable": true
+									]
 								}
 							}
 						}

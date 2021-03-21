@@ -16,10 +16,18 @@ const models: TsoaRoute.Models = {
             "poNumber": {"dataType":"string","required":true},
             "lineItem": {"dataType":"string","required":true},
             "quantity": {"dataType":"double","required":true},
-            "date": {"dataType":"datetime","default":"2021-03-21T19:01:31.324Z"},
+            "date": {"dataType":"datetime","default":"2021-03-21T20:33:30.664Z"},
             "customerNumber": {"dataType":"string","required":true},
             "paymentReference": {"dataType":"string","required":true},
             "isDeleted": {"dataType":"boolean","default":false},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ErrorReport": {
+        "dataType": "refObject",
+        "properties": {
+            "error": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
     },
