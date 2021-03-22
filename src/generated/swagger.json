@@ -24,7 +24,7 @@
 					"date": {
 						"type": "string",
 						"format": "date-time",
-						"default": "2021-03-21T20:33:30.664Z"
+						"default": "2021-03-21T20:37:04.230Z"
 					},
 					"customerNumber": {
 						"type": "string"

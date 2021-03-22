@@ -13,6 +13,8 @@ services:
       - "8000:8000"
     restart: unless-stopped
     command: ["./wait-for-it.sh", "db:5432", "--","npm", "run","start"]
+    networks:
+      - backend
     environment: 
       DEBUG: "*:*"
       DBHOST: "db"
@@ -28,3 +30,8 @@ services:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "mypass"
       POSTGRES_DATABASE: "postgres"
+    networks:
+      - backend
+networks:
+  backend:
+    driver: bridge 

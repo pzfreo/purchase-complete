@@ -16,7 +16,7 @@ const models: TsoaRoute.Models = {
             "poNumber": {"dataType":"string","required":true},
             "lineItem": {"dataType":"string","required":true},
             "quantity": {"dataType":"double","required":true},
-            "date": {"dataType":"datetime","default":"2021-03-21T20:33:30.664Z"},
+            "date": {"dataType":"datetime","default":"2021-03-21T20:37:04.230Z"},
             "customerNumber": {"dataType":"string","required":true},
             "paymentReference": {"dataType":"string","required":true},
             "isDeleted": {"dataType":"boolean","default":false},
