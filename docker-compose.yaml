@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
     image: nodejs
     environment: 
-      "DEBUG": "*.*"
+      # "DEBUG": "*.*"
     depends_on: 
       - db
     ports: 
@@ -16,7 +16,7 @@ services:
     networks:
       - backend
     environment: 
-      DEBUG: "*:*"
+      # DEBUG: "*:*"
       DBHOST: "db"
       DBUSER: "postgres"
       DBDATABASE: "postgres"
