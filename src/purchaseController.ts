@@ -14,8 +14,8 @@ import {
   import { POService, POCreationParams } from "./poService";
   
   interface ErrorReport {
-    error: String;
-  };
+    error: string;
+  }
 
   @Route("/purchase")
   export class PurchaseController extends Controller {
@@ -32,7 +32,7 @@ import {
     }
 
     @Get()
-    public async getAllPurchases() {
+    public async getAllPurchases() : Promise<any> {
       const pos : PurchaseOrder[] = await new POService().getAll();
       return pos.filter(function (po:PurchaseOrder) {return !po.isDeleted}).map( function (po:PurchaseOrder)  { return {"href": po.id}});
     
@@ -53,7 +53,7 @@ import {
 
     @SuccessResponse("200", "OK")
     @Delete("{uuid}")
-    public async delete(@Path() uuid: string) {  
+    public async delete(@Path() uuid: string) : Promise<null> {  
       try {
         const success:boolean = await new POService().delete(uuid);
         if (success) {

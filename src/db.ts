@@ -32,7 +32,7 @@ export async function getRepository() : Promise<Repository<PurchaseOrder>> {
 }
 
 function createSamplePO( repo:Repository<PurchaseOrder>) {
-    let po = new PurchaseOrder();
+    const po = new PurchaseOrder();
     po.poNumber = "PO879888"
     po.customerNumber = "c1";
     po.date = new Date();
@@ -44,11 +44,10 @@ function createSamplePO( repo:Repository<PurchaseOrder>) {
     (async () => {
         try {
             const p = await repo.create(po);
-            //console.log(p);
-            const result = await repo.save(p);
-            // console.log(JSON.stringify(result));
+            await repo.save(p);
+            
         } catch (e) {
-            // Deal with the fact the chain failed
+            console.error(e);
         }
     })();
 }

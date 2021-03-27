@@ -35,7 +35,7 @@ export class POService {
     try {
       const repo = await getRepository();
       const po : PurchaseOrder = await repo.create(poCreationParams);
-      const results = await repo.save(po);
+      await repo.save(po);
       return po;
     } catch (error) {
       console.error(error);
@@ -53,7 +53,7 @@ export class POService {
     
       try {  
         repo.merge(po, updatedOrder);
-        const results = await repo.save(po);
+        await repo.save(po);
         return po;
       }
       catch (error) // problem merging

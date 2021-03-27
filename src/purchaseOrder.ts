@@ -1,4 +1,4 @@
-import { BaseEntity, Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class PurchaseOrder  {
@@ -31,7 +31,7 @@ export class PurchaseOrder  {
     paymentReference: string;
 
     @Column('boolean', {default: false})
-    isDeleted: boolean = false;
+    isDeleted = false;
 }
 
 	

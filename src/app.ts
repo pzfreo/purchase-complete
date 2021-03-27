@@ -1,11 +1,9 @@
-// src/app.ts
 import express from "express";
 import bodyParser from "body-parser";
 import { RegisterRoutes } from "./generated/routes";
 import * as swaggerUi from "swagger-ui-express";
-const swaggerDocument = require('./generated/swagger.json');
 import { ValidateError } from "tsoa";
-
+const swaggerDocument = import('./generated/swagger.json');
 
 
 export const app = express();
