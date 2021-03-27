@@ -1,5 +1,4 @@
 import express from "express";
-import bodyParser from "body-parser";
 import { RegisterRoutes } from "./generated/routes";
 import * as swaggerUi from "swagger-ui-express";
 import { ValidateError } from "tsoa";
@@ -8,16 +7,13 @@ const swaggerDocument = import('./generated/swagger.json');
 
 export const app = express();
 
-// Use body parser to read sent json payloads
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
-app.use(bodyParser.json());
+// read sent json payloads
+
+app.use(express.json());
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+// standard type validation for tsoa
 app.use(function errorHandler(
   err: unknown,
   req: express.Request,
