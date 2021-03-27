@@ -35,13 +35,3 @@ export class PurchaseOrder  {
 }
 
 	
-
-
-export interface Purchase {
-    id: number;
-    email: string;
-    name: string;
-    status?: "Happy" | "Sad";
-    phoneNumbers: string[];
-  }
-  

@@ -24,7 +24,7 @@
 					"date": {
 						"type": "string",
 						"format": "date-time",
-						"default": "2021-03-27T06:06:14.867Z"
+						"default": "2021-03-27T06:46:47.231Z"
 					},
 					"customerNumber": {
 						"type": "string"
@@ -146,7 +146,18 @@
 				"operationId": "Delete",
 				"responses": {
 					"200": {
-						"description": "OK"
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "number",
+									"enum": [
+										null
+									],
+									"nullable": true
+								}
+							}
+						}
 					}
 				},
 				"security": [],
@@ -213,20 +224,7 @@
 						"description": "Ok",
 						"content": {
 							"application/json": {
-								"schema": {
-									"items": {
-										"properties": {
-											"href": {
-												"type": "string"
-											}
-										},
-										"required": [
-											"href"
-										],
-										"type": "object"
-									},
-									"type": "array"
-								}
+								"schema": {}
 							}
 						}
 					}
