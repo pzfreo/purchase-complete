@@ -21,6 +21,11 @@ import {
   export class PurchaseController extends Controller {
 
 
+    /**
+     * Get a PO based on the uuid
+     * @param uuid This is generated when you create the PO
+     * @returns PO or error
+     */
     @Get("{uuid}")
     public async getPurchase(@Path() uuid: string
     ): Promise<PurchaseOrder | ErrorReport> {  
@@ -31,6 +36,10 @@ import {
       return { error: "Not Found"};
     }
 
+    /**
+     * Get all POs in the system
+     * @returns an array of hrefs 
+     */
     @Get()
     public async getAllPurchases() : Promise<any> {
       const pos : PurchaseOrder[] = await new POService().getAll();
@@ -38,7 +47,11 @@ import {
     
     }
     
-  
+    /**
+     * Create a PO
+     * @param requestBody 
+     * @returns 
+     */
     @SuccessResponse("201", "Created") // Custom success response
     @Post()
     public async createPurchase(
@@ -51,6 +64,11 @@ import {
       return po;
     }
 
+    /**
+     * Delete a PO
+     * @param uuid an existing UUID for a PO 
+     * @returns empty response
+     */
     @SuccessResponse("200", "OK")
     @Delete("{uuid}")
     public async delete(@Path() uuid: string) : Promise<null> {  
@@ -72,7 +90,12 @@ import {
     }
 
 
-
+    /**
+     * 
+     * @param uuid Update a PO
+     * @param requestBody the updated data
+     * @returns The latest view of the PO
+     */
     @Put("{uuid}")
     public async updatePO(
         @Path() uuid: string,

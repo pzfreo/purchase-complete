@@ -11,7 +11,10 @@ export const app = express();
 
 app.use(express.json());
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/api-docs", swaggerUi.serve, 
+  async (_req: express.Request, res: express.Response) => {
+    return res.send(swaggerUi.generateHTML(await swaggerDocument));
+});
 
 // standard type validation for tsoa
 app.use(function errorHandler(
