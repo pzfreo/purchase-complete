@@ -1,29 +1,28 @@
 version: '3'
 services:
   purchase:
+    image: 
+      pzfreo/purchase-ts:0.0.1
     build:
       context: .
       dockerfile: Dockerfile
-    image: nodejs
-    environment: 
-      # "DEBUG": "*.*"
     depends_on: 
-      - db
+      - postgres
     ports: 
       - "8000:8000"
     restart: unless-stopped
-    command: ["./wait-for-it.sh", "db:5432", "--","npm", "run","start"]
+    command: ["./wait-for-it.sh", "postgres:5432", "--","npm", "run","start"]
     networks:
       - backend
     environment: 
       # DEBUG: "*:*"
-      DBHOST: "db"
+      DBHOST: "postgres"
       DBUSER: "postgres"
       DBDATABASE: "postgres"
       DBPASSWORD: "mypass"
       DBPORT: 5432
       PORT: 8000
-  db:
+  postgres:
     image: postgres
     restart: always
     environment:
