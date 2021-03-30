@@ -8,6 +8,7 @@ services:
       dockerfile: Dockerfile
     depends_on: 
       - postgres
+      - nats
     ports: 
       - "8000:8000"
     restart: unless-stopped
@@ -20,6 +21,7 @@ services:
       DBUSER: "postgres"
       DBDATABASE: "postgres"
       DBPASSWORD: "mypass"
+      NATS_SERVER: nats
       DBPORT: 5432
       PORT: 8000
   postgres:
@@ -29,6 +31,13 @@ services:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "mypass"
       POSTGRES_DATABASE: "postgres"
+    networks:
+      - backend
+  nats:
+    image: nats
+    ports: 
+      - "4222:4222"
+    command: [ "--config", "nats-server.conf", "-js", "-n", "nats-server", "--cluster_name", "nats-cluster"]
     networks:
       - backend
 networks:

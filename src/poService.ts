@@ -1,5 +1,6 @@
 import { PurchaseOrder } from "./purchaseOrder";
 import { getRepository } from "./db";
+import { publish } from "./publish";
 
 // A post request should not contain an id or date
 export type POCreationParams = Pick<PurchaseOrder, "poNumber" | "lineItem" | "quantity" | "customerNumber" | "paymentReference">;
@@ -36,6 +37,7 @@ export class POService {
       const repo = await getRepository();
       const po : PurchaseOrder = await repo.create(poCreationParams);
       await repo.save(po);
+      publish(po);
       return po;
     } catch (error) {
       console.error(error);
