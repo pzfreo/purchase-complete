@@ -21,8 +21,8 @@ services:
       DBUSER: "postgres"
       DBDATABASE: "postgres"
       DBPASSWORD: "mypass"
-      NATS_SERVER: nats
       DBPORT: 5432
+      NATS_SERVER: "nats"
       PORT: 8000
   postgres:
     image: postgres
@@ -35,9 +35,8 @@ services:
       - backend
   nats:
     image: nats
-    ports: 
-      - "4222:4222"
-    command: [ "--config", "nats-server.conf", "-js", "-n", "nats-server", "--cluster_name", "nats-cluster"]
+    ports:
+      - 4222:4222
     networks:
       - backend
 networks:
