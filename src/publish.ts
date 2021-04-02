@@ -10,7 +10,7 @@ async function getConnection() : Promise<Client> {
     return nats;
 }
 
-export async function publish(p:PurchaseOrder):Promise<void> {
+export async function publishCreate(p:PurchaseOrder):Promise<void> {
     const connection = await getConnection()
     connection.publish("po.create", JSON.stringify(p) );
 }
