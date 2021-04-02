@@ -1,8 +1,16 @@
 import { PurchaseOrder } from "./purchaseOrder";
-import {connect} from "ts-nats";
+import { connect, Client }  from "ts-nats";
+
+let nats = null;
+
+async function getConnection() : Promise<Client> {
+    if (nats) return nats;
+    const NATS_SERVER = process.env.NATS_SERVER || "nats";
+    nats = await connect({url: NATS_SERVER });
+    return nats;
+}
 
 export async function publish(p:PurchaseOrder):Promise<void> {
-    const NATS_SERVER = process.env.NATS_SERVER || "nats";
-    const nats = await connect({url: NATS_SERVER });
-    nats.publish("purchase.order", JSON.stringify(p) );
+    const connection = await getConnection()
+    connection.publish("purchase.order", JSON.stringify(p) );
 }
