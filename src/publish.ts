@@ -12,5 +12,5 @@ async function getConnection() : Promise<Client> {
 
 export async function publish(p:PurchaseOrder):Promise<void> {
     const connection = await getConnection()
-    connection.publish("purchase.order", JSON.stringify(p) );
+    connection.publish("po.create", JSON.stringify(p) );
 }
