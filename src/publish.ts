@@ -5,7 +5,7 @@ let nats = null;
 
 async function getConnection() : Promise<Client> {
     if (nats) return nats;
-    const NATS_SERVER = process.env.NATS_SERVER || "nats";
+    const NATS_SERVER = process.env.NATS_SERVER || "localhost";
     nats = await connect({url: NATS_SERVER });
     return nats;
 }
