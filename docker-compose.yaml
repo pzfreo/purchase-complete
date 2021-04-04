@@ -22,6 +22,9 @@ services:
       DBPASSWORD: "mypass"
       DBPORT: 5432
       PORT: 8000
+      CLIENT_SECRET: "abbd305e-d92d-44f6-8c36-9543bf92581b"
+      OAUTH2_HOST: "host.docker.internal"
+      OAUTH2_PORT: 8081
   postgres:
     image: postgres
     restart: always

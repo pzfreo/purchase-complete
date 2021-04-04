@@ -15,6 +15,7 @@
     "watch": "tsc --watch"
   },
   "dependencies": {
+    "@pzfreo/express-introspect": "^1.0.8",
     "express": "^4.17.1",
     "pg": "^8.5.1",
     "swagger-ui-express": "^4.1.6",
