@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "71d0db76-f830-474f-8429-376d9099d7a9",
+		"_postman_id": "26c21911-0b17-446e-a83f-c9a0bef92f66",
 		"name": "Test Purchase Order Service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -325,7 +325,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"PurchaseOrder PUT test\", function() {",
+							"pm.test(\"PurchaseOrder DELETE test again\", function() {",
 							"    pm.response.to.have.status(410);",
 							"});"
 						],
