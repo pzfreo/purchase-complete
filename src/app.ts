@@ -16,6 +16,8 @@ app.use("/api-docs", swaggerUi.serve,
     return res.send(swaggerUi.generateHTML(await swaggerDocument));
 });
 
+RegisterRoutes(app);
+
 // standard type validation for tsoa
 app.use(function errorHandler(
   err: unknown,
@@ -25,7 +27,7 @@ app.use(function errorHandler(
 ): express.Response | void {
   if (err instanceof ValidateError) {
     console.warn(`Caught Validation Error for ${req.path}:`, err.fields);
-    return res.status(422).json({
+    return res.status(400).json({
       message: "Validation Failed",
       details: err?.fields,
     });
@@ -38,8 +40,6 @@ app.use(function errorHandler(
 
   next();
 });
-
-RegisterRoutes(app);
 
 const port = process.env.PORT || 8000;
 

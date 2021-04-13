@@ -7,15 +7,18 @@
 		"responses": {},
 		"schemas": {
 			"PurchaseOrder": {
+				"description": "A Purchase Order object lets you interact with the PO",
 				"properties": {
 					"id": {
 						"type": "string"
 					},
 					"poNumber": {
-						"type": "string"
+						"type": "string",
+						"description": "The poNumber is your number for the PO"
 					},
 					"lineItem": {
-						"type": "string"
+						"type": "string",
+						"description": "The lineItem must match our catalogue"
 					},
 					"quantity": {
 						"type": "number",
@@ -24,16 +27,19 @@
 					"date": {
 						"type": "string",
 						"format": "date-time",
-						"default": "2021-03-28T08:06:04.990Z"
+						"default": "2021-04-13T12:34:05.037Z"
 					},
 					"customerNumber": {
-						"type": "string"
+						"type": "string",
+						"description": "This is the customer number you were issued when registering with the system"
 					},
 					"paymentReference": {
-						"type": "string"
+						"type": "string",
+						"description": "The payment reference from the payment system"
 					},
 					"isDeleted": {
 						"type": "boolean",
+						"description": "We use this to track if your PO has been cancelled",
 						"default": false
 					}
 				},
@@ -63,20 +69,24 @@
 			"Pick_PurchaseOrder.poNumber-or-lineItem-or-quantity-or-customerNumber-or-paymentReference_": {
 				"properties": {
 					"poNumber": {
-						"type": "string"
+						"type": "string",
+						"description": "The poNumber is your number for the PO"
 					},
 					"lineItem": {
-						"type": "string"
+						"type": "string",
+						"description": "The lineItem must match our catalogue"
 					},
 					"quantity": {
 						"type": "number",
 						"format": "double"
 					},
 					"customerNumber": {
-						"type": "string"
+						"type": "string",
+						"description": "This is the customer number you were issued when registering with the system"
 					},
 					"paymentReference": {
-						"type": "string"
+						"type": "string",
+						"description": "The payment reference from the payment system"
 					}
 				},
 				"required": [
@@ -130,9 +140,11 @@
 						}
 					}
 				},
+				"description": "Get a PO based on the uuid",
 				"security": [],
 				"parameters": [
 					{
+						"description": "This is generated when you create the PO",
 						"in": "path",
 						"name": "uuid",
 						"required": true,
@@ -160,9 +172,11 @@
 						}
 					}
 				},
+				"description": "Delete a PO",
 				"security": [],
 				"parameters": [
 					{
+						"description": "an existing UUID for a PO",
 						"in": "path",
 						"name": "uuid",
 						"required": true,
@@ -196,6 +210,7 @@
 				"security": [],
 				"parameters": [
 					{
+						"description": "Update a PO",
 						"in": "path",
 						"name": "uuid",
 						"required": true,
@@ -205,6 +220,7 @@
 					}
 				],
 				"requestBody": {
+					"description": "the updated data",
 					"required": true,
 					"content": {
 						"application/json": {
@@ -229,6 +245,7 @@
 						}
 					}
 				},
+				"description": "Get all POs in the system",
 				"security": [],
 				"parameters": []
 			},
@@ -246,6 +263,7 @@
 						}
 					}
 				},
+				"description": "Create a PO",
 				"security": [],
 				"parameters": [],
 				"requestBody": {
